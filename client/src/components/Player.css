@@ -2,8 +2,9 @@
   text-align: left;
   color: #ffffff;
   padding: 2rem;
-  width: 90%;
-  margin: 0 auto;
+  width: 80%;
+  max-height: 80vh;
+  margin: 2rem auto;
   position: relative;
   border-radius: 24px;
   background-size: cover;
@@ -37,17 +38,17 @@
 }
 
 @keyframes blink {
-  0% { background-color: transparent; }
-  50% { background-color: #ff4d4d; }
-  100% { background-color: transparent; }
+  0% { background-color: #ff4d4d; }  /* Start Red */
+  50% { background-color: transparent; }
+  100% { background-color: #ff4d4d; }  /* End Red */
 }
 
 .on-air-dot {
   width: 8px;
   height: 8px;
-  background-color: transparent;
+  background-color: #ff4d4d;  /* Ensure starting color */
   border-radius: 50%;
-  animation: blink 2s infinite;
+  animation: blink 1.5s infinite;
 }
 
 .on-air-text {

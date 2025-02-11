@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "./assets/logo.jpg";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Player from "./components/Player";
 import "./App.css";
@@ -8,7 +9,9 @@ function App() {
     <Router>
       <div className="App">
         <nav className="nav-bar">
-          <div className="logo">spring</div>
+          <div className="logo">
+            <img src={logo} alt="Spring Radio" className="logo-image" />
+          </div>
           <div className="nav-links">
             <Link to="/">Live Radio</Link>
             <Link to="/explore">Explore</Link>
