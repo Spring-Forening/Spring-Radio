@@ -1,0 +1,60 @@
+/* Global font for all Material-UI components */
+.MuiTypography-root,
+.MuiButton-root,
+.MuiListItemText-root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+}
+
+/* Header styles */
+.MuiAppBar-root.admin-header {
+  background-color: #fbfaf6 !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.admin-header .MuiToolbar-root {
+  color: #000000;
+}
+
+.admin-header .MuiButton-root {
+  color: #000000;
+  text-transform: none;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+}
+
+/* Drawer styles */
+.admin-drawer .MuiDrawer-paper {
+  background-color: #fbfaf6 !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.admin-drawer .MuiListItem-root {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.admin-drawer .MuiListItemText-primary {
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.admin-drawer .MuiListItemIcon-root {
+  color: #000000;
+  min-width: 40px;
+}
+
+/* Hover effects */
+.admin-drawer .MuiListItem-button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.admin-drawer .MuiListItem-button.Mui-selected {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Main content area */
+.MuiBox-root {
+  background-color: #fbfaf6;
+}

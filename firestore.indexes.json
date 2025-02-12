@@ -1,0 +1,19 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "explore",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "moods",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "order",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

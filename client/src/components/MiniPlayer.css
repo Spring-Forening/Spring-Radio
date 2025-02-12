@@ -1,0 +1,24 @@
+.mini-player {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 300px;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.mini-player .MuiCardContent-root {
+  padding: 8px 16px;
+}
+
+.mini-player .MuiTypography-subtitle1 {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.mini-player .MuiTypography-body2 {
+  font-size: 0.8rem;
+}
