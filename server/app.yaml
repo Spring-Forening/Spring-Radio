@@ -2,7 +2,7 @@ runtime: nodejs18
 env: standard
 
 service: api
-instance_class: F1
+instance_class: F4_1G  # Use F4 instance class for more memory and CPU
 
 automatic_scaling:
   target_cpu_utilization: 0.65

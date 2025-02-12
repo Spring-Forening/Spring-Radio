@@ -67,13 +67,13 @@ const initializeAdmin = async () => {
 // Initialize Firestore
 const firestore = new Firestore({
   projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
-  keyFilename: process.env.GOOGLE_CLOUD_KEY_FILE,
+  // In App Engine, we don't specify keyFilename as it uses default credentials
 });
 
 // Basic middleware
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://spring-radio.lm.r.appspot.com', 'https://spring-radio.com']
+    ? ['https://spring-radio.lm.r.appspot.com', 'https://spring-radio.com', 'https://api-dot-spring-radio.lm.r.appspot.com']
     : 'http://localhost:3000',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -83,24 +83,20 @@ app.use(express.json());
 
 // File Upload middleware
 app.use(fileUpload({
-  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB max file size
   createParentPath: true,
   parseNested: true,
-  abortOnLimit: true,
   safeFileNames: true,
   preserveExtension: true,
   debug: false, // Disable debug messages
   useTempFiles: true,
   tempFileDir: '/tmp/',
-  uploadTimeout: 0, // No timeout
-  responseOnLimit: 'File size limit exceeded (50MB)',
-  abortOnLimit: true
+  uploadTimeout: 0 // No timeout
 }));
 
 // Initialize Google Cloud Storage
 const storage = new Storage({
   projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
-  keyFilename: process.env.GOOGLE_CLOUD_KEY_FILE,
+  // In App Engine, we don't specify keyFilename as it uses default credentials
 });
 
 const bucket = storage.bucket(process.env.GOOGLE_CLOUD_BUCKET_NAME);
@@ -202,12 +198,6 @@ app.post('/api/upload', authenticateAdmin, async (req, res) => {
 
     const file = req.files.file;
     
-    // Validate file size
-    if (file.size > 50 * 1024 * 1024) {
-      console.error('File too large:', file.size);
-      return res.status(400).json({ error: 'File size exceeds 50MB limit' });
-    }
-
     // Validate file type
     if (!file.mimetype.startsWith('audio/') && !file.mimetype.startsWith('image/')) {
       console.error('Invalid file type:', file.mimetype);
