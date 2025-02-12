@@ -1,0 +1,39 @@
+/* Global font for all Material-UI components */
+.MuiTypography-root,
+.MuiButton-root,
+.MuiInputLabel-root,
+.MuiInput-root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+}
+
+/* Title styling */
+.MuiTypography-h5 {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* Form fields */
+.MuiInputLabel-root {
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px !important;
+}
+
+.MuiInput-root {
+  font-size: 0.875rem !important;
+}
+
+/* Button */
+.MuiButton-root {
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Alert message */
+.MuiAlert-message {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-size: 0.875rem !important;
+  line-height: 1.4 !important;
+}

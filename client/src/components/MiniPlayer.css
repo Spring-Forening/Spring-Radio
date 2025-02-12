@@ -14,11 +14,16 @@
 }
 
 .mini-player .MuiTypography-subtitle1 {
-  font-size: 0.9rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .mini-player .MuiTypography-body2 {
-  font-size: 0.8rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.6);
 }

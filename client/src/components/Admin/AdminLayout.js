@@ -199,7 +199,15 @@ function AdminLayout() {
         }}
         className="admin-drawer"
       >
-        <Toolbar /> {/* Spacer to align with AppBar */}
+        <Toolbar className="drawer-header">
+          <RouterLink to="/admin">
+            <img 
+              src={require('../../assets/logo.jpg')} 
+              alt="Spring Radio Logo" 
+              className="admin-logo"
+            />
+          </RouterLink>
+        </Toolbar>
         {renderNavItems()}
       </Drawer>
       <Box 

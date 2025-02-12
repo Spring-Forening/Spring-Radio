@@ -29,6 +29,26 @@
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.drawer-header {
+  padding: 1rem !important;
+  min-height: auto !important;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.admin-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.admin-logo:hover {
+  opacity: 0.8;
+}
+
 .admin-drawer .MuiListItem-root {
   padding-top: 12px;
   padding-bottom: 12px;

@@ -4,9 +4,7 @@ import './Welcome.css';
 
 function Welcome() {
   return (
-    <div className="admin-welcome">
-      <h1>Welcome to Spring Radio Admin</h1>
-      
+    <div className="admin-welcome">      
       <div className="admin-guide">
         <section>
           <h2>Quick Guide</h2>
