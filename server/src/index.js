@@ -90,8 +90,14 @@ app.use(fileUpload({
   debug: false, // Disable debug messages
   useTempFiles: true,
   tempFileDir: '/tmp/',
-  uploadTimeout: 0 // No timeout
+  uploadTimeout: 0, // No timeout
+  limits: { fileSize: 2 * 1024 * 1024 * 1024 }, // 2GB max file size
+  abortOnLimit: false // Don't return 413 when file size is exceeded, handle it in the route
 }));
+
+// Configure express for large payloads
+app.use(express.json({ limit: '2gb' }));
+app.use(express.urlencoded({ limit: '2gb', extended: true }));
 
 // Initialize Google Cloud Storage
 const storage = new Storage({
@@ -217,9 +223,10 @@ app.post('/api/upload', authenticateAdmin, async (req, res) => {
     });
 
     try {
-      // Upload to Google Cloud Storage using the temp file
+      // Create write stream to Google Cloud Storage
       const blob = bucket.file(path);
-      await blob.save(fs.readFileSync(file.tempFilePath), {
+      const blobStream = blob.createWriteStream({
+        resumable: true,
         contentType: file.mimetype,
         metadata: {
           size: file.size,
@@ -227,7 +234,30 @@ app.post('/api/upload', authenticateAdmin, async (req, res) => {
         }
       });
 
-      // Clean up temp file
+      // Handle stream events
+      await new Promise((resolve, reject) => {
+        const readStream = fs.createReadStream(file.tempFilePath);
+        
+        readStream.on('error', (error) => {
+          console.error('Read stream error:', error);
+          reject(error);
+        });
+
+        blobStream.on('error', (error) => {
+          console.error('Write stream error:', error);
+          reject(error);
+        });
+
+        blobStream.on('finish', () => {
+          console.log('Upload stream finished');
+          resolve();
+        });
+
+        // Pipe the file to GCS
+        readStream.pipe(blobStream);
+      });
+
+      // Clean up temp file after successful upload
       fs.unlinkSync(file.tempFilePath);
 
       // Generate public URL
