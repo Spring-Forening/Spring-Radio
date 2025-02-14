@@ -1,13 +1,9 @@
 import React, { useRef, useState } from "react";
 import "./Player.css";
-import violinPlayer from "../assets/violin-player.jpg";
 
 const Player = () => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const showTitle = "Jazz Radio";
-  const showDescription = "Who needs a morning coffee when you have jazz? Cure your early morning blues with smooth beats and extroverted improvisation.";
-  
   const streamUrl = "https://uk2.streamingpulse.com/ssl/vcr1";
 
   const togglePlay = () => {
@@ -19,37 +15,49 @@ const Player = () => {
     setIsPlaying(!isPlaying);
   };
 
-  const PlayIcon = () => (
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d={isPlaying ? "M6 4h4v16H6V4zm8 0h4v16h-4V4z" : "M8 5v14l11-7z"} />
-    </svg>
-  );
-
   return (
-    <div className="player-container" style={{ backgroundImage: `url(${violinPlayer})` }}>
-      <div className="player-overlay"></div>
-      
-      <div className="on-air-indicator">
-        <div className="on-air-dot"></div>
-        <span className="on-air-text">ON AIR</span>
-      </div>
-      
-      <div className="show-tags">
-        <span className="show-tag">Jazz</span>
-        <span className="show-tag">On Rotation</span>
-      </div>
-      <div className="track-info">
-        <h1 className="track-title">{showTitle}</h1>
-        <p className="track-description">{showDescription}</p>
-      </div>
-      <button className="play-btn" onClick={togglePlay} aria-label={isPlaying ? "Pause" : "Play"}>
-        <PlayIcon />
+    <div className="player-container">
+      <button 
+        className={`play-btn ${isPlaying ? 'playing' : ''}`} 
+        onClick={togglePlay} 
+        aria-label={isPlaying ? "Pause" : "Play"}
+      >
+        <svg viewBox="-50 -50 300 300" className="play-icon">
+          {[...Array(3)].map((_, i) => (
+            <path
+              key={i}
+              className="morph-path"
+              d={isPlaying 
+                ? "M100,100 m-55,0 a55,55 0 1,0 110,0 a55,55 0 1,0 -110,0"
+                : "M100,100 m-30,0 a30,30 0 1,0 60,0 a30,30 0 1,0 -60,0"
+              }
+              style={{
+                animationDelay: `${i * 0.75}s`,
+                opacity: isPlaying ? `${0.9 - i * 0.25}` : `${1 - i * 0.3}`,
+                transform: isPlaying 
+                  ? `scale(${1 + i * 0.02})`
+                  : `scale(1)`,
+                transformOrigin: 'center',
+                transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+            />
+          ))}
+        </svg>
       </button>
+      <div className="text-content">
+        <div className="schedule">
+          spring radio 
+          <span className="live-indicator">
+            live <span className="live-dot"></span>
+          </span>
+        </div>
+      </div>
 
       <audio ref={audioRef}>
         <source src={streamUrl} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
+
     </div>
   );
 };

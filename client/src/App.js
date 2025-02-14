@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./assets/logo.jpg";
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import Player from "./components/Player";
 import Explore from "./components/Explore";
@@ -36,23 +35,20 @@ function MainContent() {
     document.title = title;
   }, [location]);
 
+  const showNav = !isAdmin && location.pathname !== '/';
+  
   return (
     <div className="App">
-      {!isAdmin && (
+      {showNav && (
         <nav className="nav-bar">
-          <div className="logo">
-            <img src={logo} alt="Spring Radio" className="logo-image" />
-          </div>
           <div className="nav-links">
-            <Link to="/">Live Radio</Link>
-            <Link to="/explore">Explore</Link>
+            <Link to="/">Radio</Link>
           </div>
         </nav>
       )}
 
       <Routes>
           <Route path="/" element={<Player />} />
-          <Route path="/explore" element={<Explore />} />
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLayout />}>
