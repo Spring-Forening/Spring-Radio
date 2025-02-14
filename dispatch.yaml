@@ -1,4 +1,13 @@
 dispatch:
+  # Route api.spring-radio.com to the API service
+  - url: "api.spring-radio.com/*"
+    service: api
+  
+  # Route all other traffic to the default service
+  - url: "spring-radio.com/*"
+    service: default
+  
+  # Legacy appspot domain routing
   - url: "*/api/*"
     service: api
   - url: "*/*"
