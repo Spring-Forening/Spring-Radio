@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
-import Player from "./components/Player";
-import Explore from "./components/Explore";
+import Layout from "./components/Layout";
 import AdminLayout from "./components/Admin/AdminLayout";
 import Welcome from "./components/Admin/Welcome";
 import Schedule from "./components/Admin/Schedule";
@@ -28,27 +27,16 @@ function MainContent() {
       else if (path === '/admin/livestream') title = 'Spring Radio Admin - Livestream';
       else if (path === '/admin/explore') title = 'Spring Radio Admin - Explore';
       else title = 'Spring Radio Admin';
-    } else if (path === '/explore') {
-      title = 'Spring Radio - Explore';
     }
 
     document.title = title;
   }, [location]);
 
-  const showNav = !isAdmin && location.pathname !== '/';
-  
   return (
     <div className="App">
-      {showNav && (
-        <nav className="nav-bar">
-          <div className="nav-links">
-            <Link to="/">Radio</Link>
-          </div>
-        </nav>
-      )}
-
       <Routes>
-          <Route path="/" element={<Player />} />
+          <Route path="/" element={<Layout/>} />
+          {/* <Route path="/explore" element={<Explore />} /> */}
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLayout />}>
