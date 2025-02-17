@@ -5,6 +5,169 @@ html, body {
   height: 100vh;
   position: fixed;
   width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile-first media queries */
+@media (max-width: 768px) {
+  .bg-white.h-\[100px\] {
+    height: 70px !important;
+  }
+
+  .bg-white.h-\[50px\] {
+    height: 40px !important;
+  }
+
+  .h-\[calc\(100vh-250px\)\] {
+    height: calc(100vh - 185px) !important;
+  }
+
+  nav > div {
+    display: none; /* Hide desktop navigation */
+  }
+
+  nav {
+    justify-content: space-between !important;
+    padding: 0 1rem !important;
+  }
+
+  nav img {
+    height: 2rem !important;
+  }
+
+  .mobile-menu-button {
+    display: block !important;
+  }
+
+  .marquee-container {
+    margin: 0 0.5rem;
+  }
+
+  .marquee-content span {
+    font-size: 0.875rem;
+    margin-right: 50px;
+  }
+
+  .hero-content {
+    padding: 1rem;
+    margin: 0 1rem;
+    max-width: none;
+  }
+
+  .hero-content h2 {
+    font-size: 1.25rem !important;
+  }
+
+  .hero-content p {
+    font-size: 0.875rem !important;
+  }
+
+  .hero-controls {
+    margin-top: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .hero-controls-right {
+    width: 100%;
+  }
+
+  /* Schedule row adjustments */
+  .bg-white.h-\[50px\] {
+    height: 45px !important;
+  }
+
+  .bg-white.h-\[50px\] span.text-sm {
+    font-size: 0.875rem !important;
+  }
+
+  .bg-white.h-\[50px\] .px-6 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .bg-white.h-\[50px\] .flex.items-center {
+    height: 100%;
+  }
+
+  .bg-white.h-\[50px\] .bg-black\/10 {
+    height: 45px !important;
+    padding: 0 1.25rem !important;
+  }
+
+  .bg-white.h-\[50px\] .space-x-4 {
+    gap: 1rem !important;
+  }
+
+  /* Mobile menu styling */
+  .absolute.top-full {
+    position: fixed;
+    top: auto;
+    bottom: 70px;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(8px);
+    border-top: 2px solid rgba(0, 0, 0, 0.8);
+  }
+
+  .absolute.top-full a {
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .absolute.top-full .flex.items-center {
+    padding: 1rem 0;
+  }
+
+  /* Controls bar adjustments */
+  .bg-white.h-\[100px\] .px-6 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .text-red-700.font-medium {
+    font-size: 0.75rem !important;
+  }
+
+  /* Hide Live Now indicator in mobile */
+  .flex.items-center.space-x-2.shrink-0 {
+    display: none !important;
+  }
+
+  /* Keep schedule content in one line */
+  .bg-white.h-\[50px\] .px-6.flex.items-center {
+    max-width: calc(100vw - 100px); /* Account for NEXT box */
+    overflow: hidden;
+  }
+
+  .bg-white.h-\[50px\] .flex.items-center.space-x-4 {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  /* Target the program title specifically */
+  .bg-white.h-\[50px\] .flex.items-center.space-x-4 span.font-bold.uppercase {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 150px; /* Limit width to force ellipsis */
+    display: block;
+  }
+
+  /* Keep time from shrinking */
+  .bg-white.h-\[50px\] .flex.items-center.space-x-4 span.text-black\/60 {
+    flex-shrink: 0;
+  }
+}
+
+/* Prevent scrolling when mobile menu is open */
+body.mobile-menu-open {
+  overflow: hidden;
 }
 
 :root {
@@ -173,6 +336,17 @@ div[class*="bg-black/10"] {
 button[class*="h-[50px]"] {
   border-left: 2px solid rgba(0, 0, 0, 0.8);
   margin-right: 6px;
+  height: 50px;
+}
+
+@media (min-width: 768px) {
+  .bg-white.h-\[50px\] {
+    height: 50px !important;
+  }
+
+  .bg-white.h-\[50px\] .bg-black\/10 {
+    height: 50px !important;
+  }
 }
 
 .on-air-dot {

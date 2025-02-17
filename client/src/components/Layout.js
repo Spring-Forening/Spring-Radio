@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Layout.css';
-import { Search, MessageSquare, User, MoreHorizontal, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import { Search, MessageSquare, User, MoreHorizontal, ChevronLeft, ChevronRight, Pause, Play, Menu, X } from 'lucide-react';
 import violinPlayer from '../assets/violin-player.jpg';
 import radioProgram from '../assets/moving-content-radio-program.gif';
 import cassette from '../assets/cassette.jpg';
@@ -38,6 +38,20 @@ const Layout = () => {
   const [touchStart, setTouchStart] = useState(null);
   const [mouseStart, setMouseStart] = useState(null);
   const [isSwipeDebounced, setIsSwipeDebounced] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    // Toggle body class when mobile menu opens/closes
+    if (isMobileMenuOpen) {
+      document.body.classList.add('mobile-menu-open');
+    } else {
+      document.body.classList.remove('mobile-menu-open');
+    }
+
+    return () => {
+      document.body.classList.remove('mobile-menu-open');
+    };
+  }, [isMobileMenuOpen]);
   const audioRef = useRef(null);
   const timerRef = useRef(null);
   
@@ -157,7 +171,7 @@ const Layout = () => {
             <span className="text-sm font-bold uppercase tracking-wide">IRAN TALKS W/POUYA </span>
           </div>
         </div>
-        <button className="h-[50px] px-6 flex items-center space-x-2 hover:bg-black/5 transition-colors">
+        <button className="h-[50px] px-6 items-center space-x-2 hover:bg-black/5 transition-colors hidden md:flex">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2"/>
             <path d="M3 10H21" stroke="currentColor" strokeWidth="2"/>
@@ -298,34 +312,56 @@ const Layout = () => {
 
       {/* Main Navigation */}
       <div className="bg-white h-[100px]">
-        <nav className="w-full h-full px-6 flex items-center justify-between">
-          {/* Left Navigation with Logo */}
-          <div className="flex items-center space-x-6">
+        <nav className="w-full h-full px-6 flex items-center justify-between relative">
+          {/* Logo and Desktop Navigation */}
+          <div className="flex items-center">
             <img src={logo} alt="Spring Radio" className="h-12 w-auto" />
-            <a href="#radio" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">RADIO</a>
-            <a href="#archive" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ARCHIVE</a>
-            <a href="#articles" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ARTICLES</a>
-            <a href="#organization" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ORGANIZATION</a>
-            <a href="#contact" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">CONTACT</a>
-            <a href="#about" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ABOUT</a>
-          </div>
+              <div className="hidden lg:flex items-center space-x-6 ml-8">
+                <a href="#radio" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">RADIO</a>
+                <a href="#archive" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ARCHIVE</a>
+                <a href="#articles" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ARTICLES</a>
+                <a href="#organization" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ORGANIZATION</a>
+                <a href="#contact" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">CONTACT</a>
+                <a href="#about" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ABOUT</a>
+              </div>
+            </div>
           
           {/* Right Utility Menu */}
           <div className="flex items-center space-x-4">
             <button className="p-2 hover:bg-black/10 text-black">
               <Search size={20} />
             </button>
-            <button className="p-2 hover:bg-black/10 text-black">
+            <button className="p-2 hover:bg-black/10 text-black lg:block hidden">
               <MessageSquare size={20} />
             </button>
-            <div className="flex items-center space-x-2 text-black">
+            <button className="p-2 hover:bg-black/10 text-black hidden lg:block">
               <User size={20} />
-              <span className="text-sm font-medium uppercase tracking-wide">MY SPRING</span>
-            </div>
-            <button className="p-2 hover:bg-black/10 text-black">
-              <MoreHorizontal size={20} />
+            </button>
+            <button 
+              className="p-2 hover:bg-black/10 text-black lg:hidden"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="absolute top-full left-0 right-0 bg-white border-t border-black/10 py-4 lg:hidden">
+              <div className="flex flex-col space-y-4 px-6">
+                <a href="#radio" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">RADIO</a>
+                <a href="#archive" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ARCHIVE</a>
+                <a href="#articles" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ARTICLES</a>
+                <a href="#organization" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ORGANIZATION</a>
+                <a href="#contact" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">CONTACT</a>
+                <a href="#about" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ABOUT</a>
+                <div className="flex items-center space-x-2 text-black pt-4 border-t border-black/10">
+                  <User size={20} />
+                  <span className="text-sm font-medium uppercase tracking-wide">MY SPRING</span>
+                </div>
+              </div>
+            </div>
+          )}
         </nav>
       </div>
     </div>
