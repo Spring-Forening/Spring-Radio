@@ -347,14 +347,14 @@ const Layout = () => {
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="absolute top-full left-0 right-0 bg-white border-t border-black/10 py-4 lg:hidden">
-              <div className="flex flex-col space-y-4 px-6">
-                <a href="#radio" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">RADIO</a>
-                <a href="#archive" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ARCHIVE</a>
-                <a href="#articles" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ARTICLES</a>
-                <a href="#organization" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ORGANIZATION</a>
-                <a href="#contact" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">CONTACT</a>
-                <a href="#about" className="text-black hover:text-black/80 transition-colors uppercase text-sm tracking-wide">ABOUT</a>
+            <div className="absolute top-full left-0 right-0 bg-white border-t border-black/10 py-2 lg:hidden">
+              <div className="flex flex-col space-y-2 px-4">
+                <a href="#radio" className="text-black hover:text-black/80 transition-colors uppercase text-xs tracking-wide py-3">RADIO</a>
+                <a href="#archive" className="text-black hover:text-black/80 transition-colors uppercase text-xs tracking-wide py-3">ARCHIVE</a>
+                <a href="#articles" className="text-black hover:text-black/80 transition-colors uppercase text-xs tracking-wide py-3">ARTICLES</a>
+                <a href="#organization" className="text-black hover:text-black/80 transition-colors uppercase text-xs tracking-wide py-3">ORGANIZATION</a>
+                <a href="#contact" className="text-black hover:text-black/80 transition-colors uppercase text-xs tracking-wide py-3">CONTACT</a>
+                <a href="#about" className="text-black hover:text-black/80 transition-colors uppercase text-xs tracking-wide py-3">ABOUT</a>
                 <div className="flex items-center space-x-2 text-black pt-4 border-t border-black/10">
                   <User size={20} />
                   <span className="text-sm font-medium uppercase tracking-wide">MY SPRING</span>

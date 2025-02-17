@@ -9,6 +9,31 @@ html, body {
 }
 
 /* Mobile-first media queries */
+/* Extra small devices like iPhone mini */
+@media (max-width: 375px) {
+  .bg-white.h-\[100px\] {
+    height: 60px !important;
+  }
+
+  .bg-white.h-\[50px\] {
+    height: 35px !important;
+  }
+
+  nav {
+    padding: 0 0.5rem !important;
+  }
+
+  nav img {
+    height: 1.75rem !important;
+  }
+
+  .absolute.top-full {
+    bottom: 60px;
+    max-height: calc(100vh - 60px);
+  }
+}
+
+/* Regular mobile devices */
 @media (max-width: 768px) {
   .bg-white.h-\[100px\] {
     height: 70px !important;
@@ -33,6 +58,15 @@ html, body {
 
   nav img {
     height: 2rem !important;
+  }
+
+  /* Ensure buttons are easier to tap on mobile */
+  nav button {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .mobile-menu-button {
